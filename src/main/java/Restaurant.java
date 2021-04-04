@@ -65,6 +65,28 @@ public class Restaurant {
     public String getName() {
         return name;
     }
+    public int getOrderTotal(List<String> menuItems) throws itemNotFoundException
+    {
+    	Iterator<String> it= menuItems.iterator();
+    	String  ItemName;
+    	Item item;
+    	int orderTotal=0;
     
+    	while (it.hasNext())
+    	{
+    		ItemName = it.next();
+    		item = (findItemByName(ItemName));
+    		if (item != null)
+    		{
+    			orderTotal= orderTotal+ item.getPrice();
+    		}
+    		else
+    		{
+    			throw new itemNotFoundException(ItemName);
+    		}
+    		
+    	}
+		return orderTotal;
+    }
    
 }

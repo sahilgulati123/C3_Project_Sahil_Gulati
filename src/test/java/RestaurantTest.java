@@ -92,4 +92,24 @@ class RestaurantTest {
     	System.out.println(orderTotal);
     	assertNotEquals(orderTotal, 119 + 269);
     }
+    @Test
+    public void test_get_item_total_pass_scenario() throws itemNotFoundException {
+    	List<String> items = new ArrayList<>();
+    	int orderTotal = 0;
+
+    	LocalTime openingTime = LocalTime.parse("10:30:00");
+    	LocalTime closingTime = LocalTime.parse("22:00:00");
+    	restaurant = new Restaurant("Amelie's cafe", "Chennai", openingTime, closingTime);
+    	restaurant.addToMenu("Sweet corn soup", 119);
+    	restaurant.addToMenu("Vegetable lasagne", 269);
+
+    	items.add("Sweet corn soup");
+    	items.add("Vegetable lasagne");
+
+    	orderTotal = restaurant.getOrderTotal(items);
+    	assertEquals(orderTotal, 119 + 269);
+
+    }
+
+
 }
